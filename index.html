@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ti amo, Irene ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #ff1493;
+      --primary-light: #ff69b4;
+      --primary-dark: #c41e3a;
+      --bg-light: #fff5f8;
+      --bg-medium: #ffe0ed;
+      --text-dark: #8b0a50;
+      --text-light: #b8336a;
+      --accent: #ffc0cb;
+      --shadow: rgba(255, 20, 147, 0.2);
+      --glow: rgba(255, 105, 180, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: linear-gradient(135deg, #fff5f8 0%, #ffe0ed 50%, #ffc0cb 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark);
+      position: relative;
+    }
+
+    /* ===== PARTICELLE FLUTTUANTI ===== */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -5%;
+      opacity: 0;
+      filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.5));
+    }
+
+    .heart-particle {
+      font-size: 1.8rem;
+      animation: rise linear infinite;
+    }
+
+    .sparkle-particle {
+      width: 4px;
+      height: 4px;
+      background: #ff69b4;
+      border-radius: 50%;
+      animation: sparkle linear infinite;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) rotateZ(0deg) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) rotateZ(360deg) scale(0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      85% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(50px) scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* ===== LOGIN SCREEN ===== */
+    .login-screen {
+      position: relative;
+      z-index: 10;
+      width: min(95vw, 500px);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 20, 147, 0.2);
+      border-radius: 40px;
+      box-shadow: 
+        0 40px 80px var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      padding: 50px 35px;
+      text-align: center;
+      animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-header {
+      margin-bottom: 12px;
+      font-size: 4rem;
+      animation: pulse-heart 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-heart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .login-screen h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+    }
+
+    .login-screen p {
+      margin-bottom: 32px;
+      color: var(--text-light);
+      font-weight: 400;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .input-box {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 16px;
+      border: 2px solid rgba(255, 20, 147, 0.15);
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--text-dark);
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .input-box::placeholder {
+      color: rgba(139, 10, 80, 0.5);
+    }
+
+    .input-box:focus {
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 8px rgba(255, 20, 147, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn {
+      width: 100%;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 16px 20px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-family: "Montserrat", sans-serif;
+      box-shadow: 
+        0 15px 35px var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        0 20px 50px var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .btn:active {
+      transform: translateY(-2px);
+    }
+
+    .error {
+      min-height: 28px;
+      margin-top: 16px;
+      color: #d1266e;
+      font-weight: 600;
+      font-size: 1rem;
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    /* ===== MAIN PAGE ===== */
+    .main-page {
+      display: none;
+      position: relative;
+      z-index: 10;
+      width: min(98vw, 1000px);
+      max-height: 95vh;
+      padding: 50px 30px;
+      text-align: center;
+      animation: fadeInScale 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow-y: auto;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .main-page::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .main-page::-webkit-scrollbar-track {
+      background: rgba(255, 20, 147, 0.1);
+      border-radius: 10px;
+    }
+
+    .main-page::-webkit-scrollbar-thumb {
+      background: rgba(255, 20, 147, 0.4);
+      border-radius: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 1.2rem;
+      background: rgba(255, 20, 147, 0.1);
+      border: 2px solid var(--primary);
+      padding: 12px 24px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      color: var(--primary-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3rem, 8vw, 8rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 3px;
+      margin: 20px 0 0 0;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 20px 40px var(--shadow);
+      animation: fadeInDown 1s ease 0.2s both;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hearts-decoration {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin: 20px 0 30px 0;
+      animation: beatHeart 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 10px 25px var(--glow));
+    }
+
+    @keyframes beatHeart {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.15); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.15); }
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.5rem);
+      margin: 20px auto 0;
+      max-width: 750px;
+      color: var(--text-dark);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.5px;
+      animation: fadeInUp 1s ease 0.4s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .heart-divider {
+      margin: 40px 0;
+      font-size: 1.5rem;
+      opacity: 0.6;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+
+    .special-message {
+      background: linear-gradient(135deg, rgba(255, 20, 147, 0.08), rgba(255, 105, 180, 0.08));
+      border-left: 5px solid var(--primary);
+      padding: 28px 28px;
+      border-radius: 12px;
+      margin: 35px auto;
+      max-width: 700px;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--text-dark);
+      animation: fadeInUp 1s ease 0.8s both;
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .footer-note {
+      margin-top: 40px;
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: fadeInUp 1s ease 1s both;
+      animation-fill-mode: both;
+    }
+
+    .footer-hearts {
+      font-size: 1.8rem;
+      margin-top: 15px;
+      letter-spacing: 8px;
+      animation: fadeInUp 1s ease 1.2s both;
+    }
+
+    .logout-btn {
+      margin-top: 35px;
+      padding: 12px 28px;
+      background: rgba(255, 20, 147, 0.1);
+      border: 2px solid var(--primary);
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: "Montserrat", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .logout-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .login-screen {
+        padding: 40px 20px;
+      }
+
+      .login-screen h1 {
+        font-size: 1.8rem;
+      }
+
+      .title {
+        letter-spacing: 1px;
+      }
+
+      .main-page {
+        padding: 35px 20px;
+      }
+
+      .special-message {
+        padding: 22px 18px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particelle fluttuanti -->
+  <div class="particles" aria-hidden="true">
+    <!-- Cuori -->
+    <div class="particle heart-particle" style="left: 8%; animation-duration: 8s; animation-delay: 0s;">❤</div>
+    <div class="particle heart-particle" style="left: 15%; animation-duration: 10s; animation-delay: 1s;">❤</div>
+    <div class="particle heart-particle" style="left: 25%; animation-duration: 9s; animation-delay: 0.5s;">❤</div>
+    <div class="particle heart-particle" style="left: 35%; animation-duration: 11s; animation-delay: 1.5s;">❤</div>
+    <div class="particle heart-particle" style="left: 50%; animation-duration: 9.5s; animation-delay: 0.8s;">❤</div>
+    <div class="particle heart-particle" style="left: 65%; animation-duration: 10.5s; animation-delay: 1.2s;">❤</div>
+    <div class="particle heart-particle" style="left: 78%; animation-duration: 8.5s; animation-delay: 0.3s;">❤</div>
+    <div class="particle heart-particle" style="left: 90%; animation-duration: 11.5s; animation-delay: 1.8s;">❤</div>
+
+    <!-- Scintille -->
+    <div class="particle sparkle-particle" style="left: 12%; animation-duration: 7s; animation-delay: 0s;"></div>
+    <div class="particle sparkle-particle" style="left: 28%; animation-duration: 8.5s; animation-delay: 1s;"></div>
+    <div class="particle sparkle-particle" style="left: 42%; animation-duration: 7.5s; animation-delay: 0.5s;"></div>
+    <div class="particle sparkle-particle" style="left: 58%; animation-duration: 9s; animation-delay: 1.3s;"></div>
+    <div class="particle sparkle-particle" style="left: 72%; animation-duration: 8s; animation-delay: 0.7s;"></div>
+    <div class="particle sparkle-particle" style="left: 85%; animation-duration: 9.5s; animation-delay: 1.5s;"></div>
+  </div>
+
+  <!-- Schermata di login -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-header">💕</div>
+    <h1>ACCESSO</h1>
+    <p>Inserisci la parola magica per scoprire il mio messaggio d'amore</p>
+    
+    <div class="form-group">
+      <input id="password" class="input-box" type="password" placeholder="La parola magica..." />
+    </div>
+    
+    <button class="btn" onclick="access()">Entra nel mio cuore</button>
+    <div class="error" id="errorBox"></div>
+  </div>
+
+  <!-- Pagina principale -->
+  <div class="main-page" id="mainPage">
+    <div class="badge">✨ Per te, Irene ✨</div>
+    
+    <h1 class="title">TI AMO<br>IRENE</h1>
+    
+    <div class="hearts-decoration">💗</div>
+    
+    <p class="subtitle">
+      Non è una dichiarazione semplice, è la verità del mio cuore
+    </p>
+
+    <div class="heart-divider">💝</div>
+
+    <div class="special-message">
+      Irene, ogni momento con te è speciale. Il tuo sorriso illumina le mie giornate, 
+      il tuo sguardo mi fa sentire al sicuro, e la tua presenza nella mia vita è il regalo 
+      più grande che potessi ricevere. Grazie per essere tu, per il tuo amore, per la tua 
+      pazienza e per tutti i sogni che condividiamo. Ti amo più di quanto le parole possano 
+      descrivere, e non smetterei mai di apprezzarti e amarti.
+    </div>
+
+    <p class="subtitle">
+      Sei il mio mondo, il mio rifugio, la mia felicità
+    </p>
+
+    <div class="footer-note">Sempre e per sempre, solo tuo ❤️</div>
+    <div class="footer-hearts">💕 💗 💖</div>
+
+    <button class="logout-btn" onclick="logout()">Esci</button>
+  </div>
+
+  <script>
+    const correctPassword = "irene";
+
+    function access() {
+      const password = document.getElementById("password").value.trim().toLowerCase();
+      const errorBox = document.getElementById("errorBox");
+      const loginScreen = document.getElementById("loginScreen");
+      const mainPage = document.getElementById("mainPage");
+
+      if (password === correctPassword) {
+        errorBox.textContent = "";
+        loginScreen.style.display = "none";
+        mainPage.style.display = "block";
+        document.body.style.overflow = "auto";
+      } else {
+        errorBox.textContent = "❌ Password sbagliata, riprova 💕";
+      }
+    }
+
+    function logout() {
+      document.getElementById("mainPage").style.display = "none";
+      document.getElementById("loginScreen").style.display = "block";
+      document.getElementById("password").value = "";
+      document.getElementById("errorBox").textContent = "";
+      document.body.style.overflow = "hidden";
+    }
+
+    document.getElementById("password").addEventListener("keydown", function (event) {
+      if (event.key === "Enter") access();
+    });
+
+    // Focus al caricamento
+    document.getElementById("password").focus();
+  </script>
+</body>
+</html>
