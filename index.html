@@ -3,561 +3,535 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ti amo, Irene ❤️</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
+  <title>Chattacappu</title>
   <style>
     :root {
-      --primary: #ff1493;
-      --primary-light: #ff69b4;
-      --primary-dark: #c41e3a;
-      --bg-light: #fff5f8;
-      --bg-medium: #ffe0ed;
-      --text-dark: #8b0a50;
-      --text-light: #b8336a;
-      --accent: #ffc0cb;
-      --shadow: rgba(255, 20, 147, 0.2);
-      --glow: rgba(255, 105, 180, 0.4);
+      --sky-1: #dff8ff;
+      --sky-2: #bfeaff;
+      --sky-3: #7ccfff;
+      --blue-1: #0e4fa8;
+      --blue-2: #1d74d2;
+      --blue-3: #5ec9ff;
+      --navy: #0f2343;
+      --text: #17345a;
+      --white: #ffffff;
+      --glass: rgba(255,255,255,0.22);
+      --glass-strong: rgba(255,255,255,0.48);
+      --shadow: rgba(15, 70, 130, 0.18);
+      --shadow-strong: rgba(8, 34, 58, 0.25);
+      --pink: #ff8ec7;
+      --pink-2: #ffb6da;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: "Montserrat", sans-serif;
-      background: linear-gradient(135deg, #fff5f8 0%, #ffe0ed 50%, #ffc0cb 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-dark);
-      position: relative;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 28%, #ecfbff 100%);
+      color: var(--text);
+      overflow-x: hidden;
     }
 
-    /* ===== PARTICELLE FLUTTUANTI ===== */
-    .particles {
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .bg-hearts {
       position: fixed;
       inset: 0;
-      pointer-events: none;
       overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .particle {
+    .heart {
       position: absolute;
-      bottom: -5%;
-      opacity: 0;
-      filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.5));
+      bottom: -18%;
+      font-size: 1.7rem;
+      opacity: 0.8;
+      color: rgba(42, 128, 255, 0.7);
+      filter: drop-shadow(0 0 8px rgba(110, 203, 255, 0.8));
+      animation: floatHeart linear infinite;
     }
 
-    .heart-particle {
-      font-size: 1.8rem;
-      animation: rise linear infinite;
-    }
-
-    .sparkle-particle {
-      width: 4px;
-      height: 4px;
-      background: #ff69b4;
-      border-radius: 50%;
-      animation: sparkle linear infinite;
-    }
-
-    @keyframes rise {
+    @keyframes floatHeart {
       0% {
-        transform: translateY(0) rotateZ(0deg) scale(1);
+        transform: translateY(0) scale(1) rotate(0deg);
         opacity: 0;
       }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
+      15% { opacity: 1; }
       100% {
-        transform: translateY(-110vh) rotateZ(360deg) scale(0);
+        transform: translateY(-120vh) scale(1.5) rotate(25deg);
         opacity: 0;
       }
     }
 
-    @keyframes sparkle {
-      0% {
-        transform: translateY(0) translateX(0) scale(1);
-        opacity: 0;
-      }
-      15% {
-        opacity: 1;
-      }
-      85% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) translateX(50px) scale(0);
-        opacity: 0;
-      }
-    }
-
-    /* ===== LOGIN SCREEN ===== */
-    .login-screen {
+    .container {
       position: relative;
-      z-index: 10;
-      width: min(95vw, 500px);
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(15px);
-      border: 2px solid rgba(255, 20, 147, 0.2);
-      border-radius: 40px;
-      box-shadow: 
-        0 40px 80px var(--shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      padding: 50px 35px;
-      text-align: center;
-      animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 1;
+      width: min(1220px, 92vw);
+      margin: 0 auto;
     }
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    header {
+      padding-top: 24px;
+      padding-bottom: 8px;
     }
 
-    .login-header {
-      margin-bottom: 12px;
-      font-size: 4rem;
-      animation: pulse-heart 1.5s ease-in-out infinite;
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 40px rgba(15, 70, 130, 0.08);
+      padding: 14px 22px;
     }
 
-    @keyframes pulse-heart {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    .login-screen h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 2.5rem;
+    .brand {
       font-weight: 900;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--navy);
       letter-spacing: 2px;
+      font-size: 1.3rem;
     }
 
-    .login-screen p {
-      margin-bottom: 32px;
-      color: var(--text-light);
-      font-weight: 400;
-      font-size: 1.05rem;
-      line-height: 1.6;
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--navy);
+      font-weight: 700;
     }
 
-    .form-group {
-      margin-bottom: 22px;
+    .nav a {
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: 0.25s ease;
     }
 
-    .input-box {
-      width: 100%;
-      padding: 16px 20px;
-      border-radius: 16px;
-      border: 2px solid rgba(255, 20, 147, 0.15);
-      background: rgba(255, 255, 255, 0.8);
-      color: var(--text-dark);
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-
-    .input-box::placeholder {
-      color: rgba(139, 10, 80, 0.5);
-    }
-
-    .input-box:focus {
-      border-color: var(--primary);
-      background: white;
-      box-shadow: 0 0 0 8px rgba(255, 20, 147, 0.1);
+    .nav a:hover {
+      background: rgba(30, 117, 210, 0.08);
       transform: translateY(-2px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 38px;
+      min-height: 74vh;
+      padding: 18px 0 34px;
+    }
+
+    .eyebrow {
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3.1rem, 6vw, 6.1rem);
+      line-height: 0.9;
+      color: var(--navy);
+      letter-spacing: -2px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--blue-1), var(--blue-2), var(--blue-3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      margin-top: 18px;
+      font-size: 1.08rem;
+      line-height: 1.9;
+      max-width: 620px;
+      color: #244a73;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 28px;
     }
 
     .btn {
-      width: 100%;
-      border: none;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 16px 20px;
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      font-family: "Montserrat", sans-serif;
-      box-shadow: 
-        0 15px 35px var(--shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 
-        0 20px 50px var(--shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
-
-    .btn:active {
-      transform: translateY(-2px);
-    }
-
-    .error {
-      min-height: 28px;
-      margin-top: 16px;
-      color: #d1266e;
-      font-weight: 600;
-      font-size: 1rem;
-      animation: shake 0.5s ease;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-8px); }
-      75% { transform: translateX(8px); }
-    }
-
-    /* ===== MAIN PAGE ===== */
-    .main-page {
-      display: none;
-      position: relative;
-      z-index: 10;
-      width: min(98vw, 1000px);
-      max-height: 95vh;
-      padding: 50px 30px;
-      text-align: center;
-      animation: fadeInScale 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-      overflow-y: auto;
-    }
-
-    @keyframes fadeInScale {
-      from {
-        opacity: 0;
-        transform: scale(0.92);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .main-page::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .main-page::-webkit-scrollbar-track {
-      background: rgba(255, 20, 147, 0.1);
-      border-radius: 10px;
-    }
-
-    .main-page::-webkit-scrollbar-thumb {
-      background: rgba(255, 20, 147, 0.4);
-      border-radius: 10px;
-    }
-
-    .badge {
-      display: inline-block;
-      font-size: 1.2rem;
-      background: rgba(255, 20, 147, 0.1);
-      border: 2px solid var(--primary);
-      padding: 12px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 28px;
       border-radius: 999px;
-      margin-bottom: 24px;
-      color: var(--primary-dark);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(3rem, 8vw, 8rem);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: 3px;
-      margin: 20px 0 0 0;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 20px 40px var(--shadow);
-      animation: fadeInDown 1s ease 0.2s both;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hearts-decoration {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      margin: 20px 0 30px 0;
-      animation: beatHeart 1.2s ease-in-out infinite;
-      filter: drop-shadow(0 10px 25px var(--glow));
-    }
-
-    @keyframes beatHeart {
-      0%, 100% { transform: scale(1); }
-      25% { transform: scale(1.15); }
-      50% { transform: scale(1); }
-      75% { transform: scale(1.15); }
-    }
-
-    .subtitle {
-      font-size: clamp(1rem, 2.2vw, 1.5rem);
-      margin: 20px auto 0;
-      max-width: 750px;
-      color: var(--text-dark);
-      font-weight: 300;
-      line-height: 1.9;
-      letter-spacing: 0.5px;
-      animation: fadeInUp 1s ease 0.4s both;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .heart-divider {
-      margin: 40px 0;
-      font-size: 1.5rem;
-      opacity: 0.6;
-      animation: fadeInUp 1s ease 0.6s both;
-    }
-
-    .special-message {
-      background: linear-gradient(135deg, rgba(255, 20, 147, 0.08), rgba(255, 105, 180, 0.08));
-      border-left: 5px solid var(--primary);
-      padding: 28px 28px;
-      border-radius: 12px;
-      margin: 35px auto;
-      max-width: 700px;
-      font-size: 1.15rem;
-      font-weight: 400;
-      line-height: 1.8;
-      color: var(--text-dark);
-      animation: fadeInUp 1s ease 0.8s both;
-      box-shadow: 0 10px 30px var(--shadow);
-    }
-
-    .footer-note {
-      margin-top: 40px;
-      font-size: 1.3rem;
-      color: var(--primary-dark);
-      font-weight: 700;
-      letter-spacing: 1px;
-      animation: fadeInUp 1s ease 1s both;
-      animation-fill-mode: both;
-    }
-
-    .footer-hearts {
-      font-size: 1.8rem;
-      margin-top: 15px;
-      letter-spacing: 8px;
-      animation: fadeInUp 1s ease 1.2s both;
-    }
-
-    .logout-btn {
-      margin-top: 35px;
-      padding: 12px 28px;
-      background: rgba(255, 20, 147, 0.1);
-      border: 2px solid var(--primary);
-      color: var(--primary-dark);
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: 20px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      transition: 0.3s ease;
+      box-shadow: 0 18px 35px rgba(19, 108, 208, 0.22);
+      border: none;
       cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: "Montserrat", sans-serif;
-      text-transform: uppercase;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-1), var(--blue-2));
+      color: var(--white);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.35);
+      color: var(--navy);
+      border: 1px solid rgba(22, 108, 219, 0.12);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .orb {
+      position: absolute;
+      width: min(520px, 78vw);
+      height: min(520px, 78vw);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.92), rgba(152,220,255,0.8), rgba(37,116,210,0.8));
+      box-shadow: inset 0 28px 60px rgba(255,255,255,0.4), 0 30px 80px rgba(17, 85, 185, 0.18);
+      z-index: 1;
+    }
+
+    .card-frame {
+      position: relative;
+      z-index: 2;
+      width: min(430px, 80%);
+      padding: 12px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 28px 70px rgba(14, 62, 116, 0.18);
+      transform: rotate(-2deg);
+    }
+
+    .card-frame img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 3px solid rgba(255,255,255,0.7);
+    }
+
+    .mini-badge {
+      position: absolute;
+      right: 20px;
+      top: 18px;
+      z-index: 3;
+      background: rgba(13, 79, 168, 0.8);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 800;
       letter-spacing: 1px;
+      box-shadow: 0 12px 20px rgba(13, 74, 158, 0.25);
     }
 
-    .logout-btn:hover {
-      background: var(--primary);
-      color: white;
-      transform: scale(1.05);
+    section {
+      padding: 34px 0 20px;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 600px) {
-      .login-screen {
-        padding: 40px 20px;
-      }
+    .section-heading {
+      margin-bottom: 24px;
+      text-align: center;
+    }
 
-      .login-screen h1 {
-        font-size: 1.8rem;
-      }
+    .section-heading h2 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      margin: 0;
+      color: var(--navy);
+    }
 
-      .title {
-        letter-spacing: 1px;
-      }
+    .profiles {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
 
-      .main-page {
-        padding: 35px 20px;
-      }
+    .profile-card {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 25px 55px rgba(15, 59, 112, 0.12);
+      transition: 0.3s ease;
+    }
 
-      .special-message {
-        padding: 22px 18px;
-        font-size: 1rem;
-      }
+    .profile-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 32px 60px rgba(15, 59, 112, 0.18);
+    }
+
+    .profile-card img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-body {
+      padding: 20px 20px 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(172,225,255,0.18));
+    }
+
+    .profile-body h3 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      color: var(--navy);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      background: rgba(18, 120, 217, 0.08);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .profile-body p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #1c3d5d;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      min-height: 330px;
+      background: rgba(255,255,255,0.24);
+      box-shadow: 0 22px 40px rgba(20, 65, 111, 0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 330px;
+      object-fit: cover;
+      display: block;
+      transition: 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .caption {
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px);
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .story {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 30px;
+      padding: 30px 28px;
+      box-shadow: 0 24px 55px rgba(14, 62, 116, 0.1);
+    }
+
+    .story p {
+      margin: 0;
+      text-align: center;
+      font-size: 1.12rem;
+      line-height: 1.9;
+      color: var(--navy);
+    }
+
+    footer {
+      padding: 26px 0 52px;
+      text-align: center;
+      color: var(--navy);
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; }
+      .profiles { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { display: none; }
+      .gallery { grid-template-columns: 1fr; }
+      .cta-row { flex-direction: column; }
+      .btn { width: 100%; }
+      .card-frame img { height: 420px; }
+      .orb { width: min(390px, 82vw); height: min(390px, 82vw); }
+      .topbar { border-radius: 22px; }
     }
   </style>
 </head>
 <body>
-  <!-- Particelle fluttuanti -->
-  <div class="particles" aria-hidden="true">
-    <!-- Cuori -->
-    <div class="particle heart-particle" style="left: 8%; animation-duration: 8s; animation-delay: 0s;">❤</div>
-    <div class="particle heart-particle" style="left: 15%; animation-duration: 10s; animation-delay: 1s;">❤</div>
-    <div class="particle heart-particle" style="left: 25%; animation-duration: 9s; animation-delay: 0.5s;">❤</div>
-    <div class="particle heart-particle" style="left: 35%; animation-duration: 11s; animation-delay: 1.5s;">❤</div>
-    <div class="particle heart-particle" style="left: 50%; animation-duration: 9.5s; animation-delay: 0.8s;">❤</div>
-    <div class="particle heart-particle" style="left: 65%; animation-duration: 10.5s; animation-delay: 1.2s;">❤</div>
-    <div class="particle heart-particle" style="left: 78%; animation-duration: 8.5s; animation-delay: 0.3s;">❤</div>
-    <div class="particle heart-particle" style="left: 90%; animation-duration: 11.5s; animation-delay: 1.8s;">❤</div>
-
-    <!-- Scintille -->
-    <div class="particle sparkle-particle" style="left: 12%; animation-duration: 7s; animation-delay: 0s;"></div>
-    <div class="particle sparkle-particle" style="left: 28%; animation-duration: 8.5s; animation-delay: 1s;"></div>
-    <div class="particle sparkle-particle" style="left: 42%; animation-duration: 7.5s; animation-delay: 0.5s;"></div>
-    <div class="particle sparkle-particle" style="left: 58%; animation-duration: 9s; animation-delay: 1.3s;"></div>
-    <div class="particle sparkle-particle" style="left: 72%; animation-duration: 8s; animation-delay: 0.7s;"></div>
-    <div class="particle sparkle-particle" style="left: 85%; animation-duration: 9.5s; animation-delay: 1.5s;"></div>
+  <div class="bg-hearts" aria-hidden="true">
+    <div class="heart" style="left: 8%; animation-duration: 11s; animation-delay: 0s;">❤</div>
+    <div class="heart" style="left: 19%; animation-duration: 13s; animation-delay: 1s;">❤</div>
+    <div class="heart" style="left: 31%; animation-duration: 12s; animation-delay: 2s;">❤</div>
+    <div class="heart" style="left: 44%; animation-duration: 15s; animation-delay: 1.5s;">❤</div>
+    <div class="heart" style="left: 58%; animation-duration: 14s; animation-delay: 0.5s;">❤</div>
+    <div class="heart" style="left: 73%; animation-duration: 12.5s; animation-delay: 2.5s;">❤</div>
+    <div class="heart" style="left: 87%; animation-duration: 13.5s; animation-delay: 3s;">❤</div>
   </div>
 
-  <!-- Schermata di login -->
-  <div class="login-screen" id="loginScreen">
-    <div class="login-header">💕</div>
-    <h1>ACCESSO</h1>
-    <p>Inserisci la parola magica per scoprire il mio messaggio d'amore</p>
-    
-    <div class="form-group">
-      <input id="password" class="input-box" type="password" placeholder="La parola magica..." />
-    </div>
-    
-    <button class="btn" onclick="access()">Entra nel mio cuore</button>
-    <div class="error" id="errorBox"></div>
+  <div class="container">
+    <header>
+      <div class="topbar">
+        <div class="brand">CHATTACAPPU</div>
+        <nav class="nav">
+          <a href="#home">Home</a>
+          <a href="#cavalli">Cavalli</a>
+          <a href="#galleria">Galleria</a>
+          <a href="#story">La storia</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Scuderia incantata</div>
+          <h1>Il mondo di <span class="gradient-text">Chattanooga</span> e <span class="gradient-text">Cappuccino</span></h1>
+          <p class="lead">
+            Due anime diverse, ma perfettamente complementari. Chattanooga porta calma e sicurezza,
+            Cappuccino porta energia e fantasia. Insieme raccontano una storia speciale, fatta di vita,
+            gentilezza e amore per i cavalli.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#cavalli">Scopri i cavalli</a>
+            <a class="btn btn-secondary" href="#galleria">Vedi la galleria</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="orb"></div>
+          <div class="mini-badge">💙 amore in movimento</div>
+          <div class="card-frame">
+            <img src="images/chattanooga-hero.jpg" alt="Chattanooga e Cappuccino" />
+          </div>
+        </div>
+      </section>
+
+      <section id="cavalli">
+        <div class="section-heading">
+          <h2>I due protagonisti</h2>
+        </div>
+
+        <div class="profiles">
+          <article class="profile-card">
+            <img src="images/chattanooga-1.jpg" alt="Chattanooga" />
+            <div class="profile-body">
+              <h3>Chattanooga</h3>
+              <div class="tags">
+                <span class="tag">Tranquillo</span>
+                <span class="tag">Calmo</span>
+                <span class="tag">Anziano</span>
+              </div>
+              <p>
+                Chattanooga è il cavallo della quiete. La sua presenza è rasserenante, elegante e piena
+                di serenità: un compagno che porta equilibrio e fiducia in ogni momento.
+              </p>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <img src="images/cappuccino-1.jpg" alt="Cappuccino" />
+            <div class="profile-body">
+              <h3>Cappuccino</h3>
+              <div class="tags">
+                <span class="tag">Giovane</span>
+                <span class="tag">Agitato</span>
+                <span class="tag">Più chiaro</span>
+              </div>
+              <p>
+                Cappuccino è energia pura. Più vivace, curioso e brillante, illumina ogni istante con il
+                suo carattere pieno di vita e con quel suo colore più chiaro che cattura subito lo sguardo.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="galleria">
+        <div class="section-heading">
+          <h2>Galleria</h2>
+        </div>
+
+        <div class="gallery">
+          <div class="gallery-item">
+            <img src="images/chattanooga-2.jpg" alt="Chattanooga in primo piano" />
+            <div class="caption">Chattanooga</div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="images/cappuccino-2.jpg" alt="Cappuccino in primo piano" />
+            <div class="caption">Cappuccino</div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="images/chattanooga-cappuccino.jpg" alt="I due cavalli insieme" />
+            <div class="caption">Insieme</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="story">
+        <div class="story">
+          <p>
+            “Chattacappu” è una storia di contrasti belli, di due caratteri che si completano senza mai
+            smettere di stupire. Uno tranquillo, l’altro pieno di energia. Uno antico, l’altro giovane.
+            Eppure insieme formano qualcosa di irresistibile: un amore fatto di meraviglia, natura e magia.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Chattacappu • creato con cura e amore 💙
+    </footer>
   </div>
-
-  <!-- Pagina principale -->
-  <div class="main-page" id="mainPage">
-    <div class="badge">✨ Per te, Irene ✨</div>
-    
-    <h1 class="title">TI AMO<br>IRENE</h1>
-    
-    <div class="hearts-decoration">💗</div>
-    
-    <p class="subtitle">
-      Non è una dichiarazione semplice, è la verità del mio cuore
-    </p>
-
-    <div class="heart-divider">💝</div>
-
-    <div class="special-message">
-      Irene, ogni momento con te è speciale. Il tuo sorriso illumina le mie giornate, 
-      il tuo sguardo mi fa sentire al sicuro, e la tua presenza nella mia vita è il regalo 
-      più grande che potessi ricevere. Grazie per essere tu, per il tuo amore, per la tua 
-      pazienza e per tutti i sogni che condividiamo. Ti amo più di quanto le parole possano 
-      descrivere, e non smetterei mai di apprezzarti e amarti.
-    </div>
-
-    <p class="subtitle">
-      Sei il mio mondo, il mio rifugio, la mia felicità
-    </p>
-
-    <div class="footer-note">Sempre e per sempre, solo tuo ❤️</div>
-    <div class="footer-hearts">💕 💗 💖</div>
-
-    <button class="logout-btn" onclick="logout()">Esci</button>
-  </div>
-
-  <script>
-    // Controlla se c'è il parametro di accesso automatico nell'URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const autoAccess = urlParams.get('access');
-
-    function access() {
-      const password = document.getElementById("password").value.trim().toLowerCase();
-      const errorBox = document.getElementById("errorBox");
-      const loginScreen = document.getElementById("loginScreen");
-      const mainPage = document.getElementById("mainPage");
-
-      if (password === "irene") {
-        errorBox.textContent = "";
-        loginScreen.style.display = "none";
-        mainPage.style.display = "block";
-        document.body.style.overflow = "auto";
-      } else {
-        errorBox.textContent = "❌ Password sbagliata, riprova 💕";
-      }
-    }
-
-    function logout() {
-      document.getElementById("mainPage").style.display = "none";
-      document.getElementById("loginScreen").style.display = "block";
-      document.getElementById("password").value = "";
-      document.getElementById("errorBox").textContent = "";
-      document.body.style.overflow = "hidden";
-    }
-
-    document.getElementById("password").addEventListener("keydown", function (event) {
-      if (event.key === "Enter") access();
-    });
-
-    // Se il parametro di accesso è presente, accedi automaticamente
-    if (autoAccess === "true") {
-      setTimeout(() => {
-        document.getElementById("loginScreen").style.display = "none";
-        document.getElementById("mainPage").style.display = "block";
-        document.body.style.overflow = "auto";
-      }, 500);
-    } else {
-      // Focus al caricamento se non accesso automatico
-      document.getElementById("password").focus();
-    }
-  </script>
 </body>
 </html>
