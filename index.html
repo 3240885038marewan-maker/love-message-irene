@@ -515,7 +515,9 @@
   </div>
 
   <script>
-    const correctPassword = "irene";
+    // Controlla se c'è il parametro di accesso automatico nell'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const autoAccess = urlParams.get('access');
 
     function access() {
       const password = document.getElementById("password").value.trim().toLowerCase();
@@ -523,7 +525,7 @@
       const loginScreen = document.getElementById("loginScreen");
       const mainPage = document.getElementById("mainPage");
 
-      if (password === correctPassword) {
+      if (password === "irene") {
         errorBox.textContent = "";
         loginScreen.style.display = "none";
         mainPage.style.display = "block";
@@ -545,8 +547,17 @@
       if (event.key === "Enter") access();
     });
 
-    // Focus al caricamento
-    document.getElementById("password").focus();
+    // Se il parametro di accesso è presente, accedi automaticamente
+    if (autoAccess === "true") {
+      setTimeout(() => {
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("mainPage").style.display = "block";
+        document.body.style.overflow = "auto";
+      }, 500);
+    } else {
+      // Focus al caricamento se non accesso automatico
+      document.getElementById("password").focus();
+    }
   </script>
 </body>
 </html>
